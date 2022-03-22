@@ -1,10 +1,14 @@
 from turtle import width
+from click import option
 import streamlit as st
 import numpy as np
 import pandas as pd
 from PIL import Image
 
 st.title('さおたのパイソニスト超入門')
+
+# streamlitのリファレンス
+# https://docs.streamlit.io/
 
 st.write('DataFrame')
 
@@ -59,8 +63,28 @@ df3 = pd.DataFrame(
 
 st.map(df3)
 
-st.write('画像表示')
+# インタラクティブなウィジット
+# https://docs.streamlit.io/library/api-reference/widgets
+st.write('Interactive Widgets')
 
-img = Image.open('noimage-760x460.png')
-# use_column_width→画面の横幅に合わせて表示
-st.image(img, caption='NoImage', use_column_width=True)
+st.write('Display Image')
+
+# checkboxはcheckが入っていたらtrue、checkが入っていなかったらfalseを返す
+if st.checkbox('Show Image'):
+  img = Image.open('noimage-760x460.png')
+  # use_column_width→画面の横幅に合わせて表示
+  st.image(img, caption='NoImage', use_column_width=True)
+
+# 動的な値をoptionという変数に入れる
+option = st.selectbox(
+  'あなたの好きな数字は？',
+  list(range(1,11))
+)
+'あなたの好きな数字は、', option, 'です。'
+
+text = st.text_input('あなたの趣味は？')
+'あなたの趣味：', text
+
+# slider→最小値,最大値,デフォルト値
+condition = st.slider('あなたの今の調子は？', 0, 100, 50)
+'コンディション：', condition
