@@ -82,9 +82,25 @@ option = st.selectbox(
 )
 'あなたの好きな数字は、', option, 'です。'
 
-text = st.text_input('あなたの趣味は？')
-'あなたの趣味：', text
+# st.sidebar
 
+# text = st.sidebar.text_input('あなたの趣味は？')
 # slider→最小値,最大値,デフォルト値
-condition = st.slider('あなたの今の調子は？', 0, 100, 50)
-'コンディション：', condition
+# condition = st.sidebar.slider('あなたの今の調子は？', 0, 100, 50)
+
+# 'あなたの趣味：', text
+# 'コンディション：', condition
+
+# Please replace st.beta_columns with st.columns.
+# st.beta_columns will be removed after 2021-11-02.
+
+left_column, right_colunm = st.columns(2)
+button = left_column.button('右カラムに文字を表示')
+if button:
+  right_colunm.write('ここは右カラム')
+
+# Please replace st.beta_expander with st.expander.
+# st.beta_expander will be removed after 2021-11-02.
+
+expander = st.expander('問い合わせ')
+expander.write('問い合わせ内容を書く')
